@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="regression">
+   <!-- <test name="TwoLinesAgentHangup">
+        <classes>
+            <class name="TwoLinesAgentHangup"/>
+        </classes>
+    </test>
+    <test name="TwoLinesClientHangup">
+        <classes>
+            <class name="TwoLinesClientHangup"/>
+        </classes>
+    </test>-->
+
+    <test name="PDPreviewFreeCallIE">
+        <classes>
+            <class name="PDPreviewFreeCall">
+                <methods>
+                    <include name="pDPreviewFreeCall"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="PDPreviewFreeAUX">
+         <classes>
+             <class name="PDPreviewFreeAUX">
+                 <methods>
+                     <include name="pDPreviewFreeAUX"/>
+                 </methods>
+             </class>
+         </classes>
+     </test>
+     <test name="PDProgressiveReleasedAgentHangup">
+        <classes>
+            <class name="PDProgressiveReleasedAgentHangup">
+                <methods>
+                    <include name="IELogin"/>
+                    <include name="changeStatusToAUX"/>
+                    <include name="runSQLQuery"/>
+                    <include name="waitForCallOnClientSide"/>
+                    <include name="noIncomingCallToAgent"/>
+                    <include name="changeStatusToAvailable"/>
+                    <include name="waitForCallOnClientSide2"/>
+                    <include name="receiveIncomingCallToAgent"/>
+                    <include name="agentHangup"/>
+                    <include name="setResultCodeAndCheckAvailableStatus"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

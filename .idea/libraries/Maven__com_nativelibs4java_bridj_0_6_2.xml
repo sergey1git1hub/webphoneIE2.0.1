@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Maven: com.nativelibs4java:bridj:0.6.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/nativelibs4java/bridj/0.6.2/bridj-0.6.2.jar!/" />
+      <root url="file://C:/sqlserverjdbc" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/nativelibs4java/bridj/0.6.2/bridj-0.6.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/nativelibs4java/bridj/0.6.2/bridj-0.6.2-sources.jar!/" />
+    </SOURCES>
+    <jarDirectory url="file://C:/sqlserverjdbc" recursive="false" />
+  </library>
+</component>
