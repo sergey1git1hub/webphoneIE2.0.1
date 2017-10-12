@@ -54,6 +54,7 @@ public class Methods {
             ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
                     true);
             driver = new InternetExplorerDriver(ieCapabilities);
+            driver.manage().window().maximize();
 
            /* final WebDriver finalDriver = driver;
             final String finalwebphoneUrl = webphoneUrl;*/
