@@ -185,8 +185,23 @@ public class Methods {
         return driver;
     }
 
-    public static WebDriver changeStatus(WebDriver driver, String status) {
+    public static WebDriver changeStatus(WebDriver driver, String status) throws UnknownHostException, FindFailed, InterruptedException {
         System.out.println("changeStatus");
+        String hostName = InetAddress.getLocalHost().getHostName();
+        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+            if(status == "Available"){
+            Screen screen = new Screen();
+            org.sikuli.script.Pattern currentStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\currentStatus.png");
+            screen.wait(currentStatus, 10);
+            Thread.sleep(1000);
+            screen.click(currentStatus);
+            Thread.sleep(1000);
+            org.sikuli.script.Pattern availableStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\availableStatus.png");
+            screen.wait(availableStatus, 10);
+            screen.click(availableStatus);
+            }
+            checkStatus(driver, status, 2);
+        } else
         if (browser == "chrome") {
             WebElement currentStatus = driver.findElement(By.cssSelector(
                     "#statusButton > span.ui-button-text.ui-c"));
