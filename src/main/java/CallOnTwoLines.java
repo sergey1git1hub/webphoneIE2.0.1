@@ -7,6 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 /**
  * Created by SChubuk on 05.10.2017.
@@ -52,7 +53,7 @@ public class CallOnTwoLines {
         callOnSecondLine();
     }
 
-    public static void setResultCodeAndCheckAvailableStatus() throws InterruptedException {
+    public static void setResultCodeAndCheckAvailableStatus() throws InterruptedException, FindFailed, UnknownHostException {
         Methods.setWebphoneResultCode(driver);
         Methods.checkStatus(driver, "Available", 3);
 
