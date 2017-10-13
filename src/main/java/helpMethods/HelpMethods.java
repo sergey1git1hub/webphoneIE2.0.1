@@ -2,8 +2,10 @@ package helpMethods;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.FindFailed;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -43,16 +45,25 @@ public class HelpMethods {
     }
 
     public static WebDriver handleLogoutWindow(WebDriver driver) {
+        System.out.println("handleLogoutWindow");
         try {
-            WebDriverWait waitForLogoutWindow = new WebDriverWait(driver, 2);
+            WebDriverWait waitForLogoutWindow = new WebDriverWait(driver, 3);
             waitForLogoutWindow.until(ExpectedConditions.elementToBeClickable(
                     By.cssSelector("#userLogoutForm\\3a btn_userlogout_yes > span.ui-button-text.ui-c")));
             WebElement button_Yes = driver.findElement(By.cssSelector("#userLogoutForm\\3a btn_userlogout_yes > span.ui-button-text.ui-c"));
-            button_Yes.click();
-        } catch (ElementNotVisibleException e) {
-            System.out.println(e);
-
-        }catch (TimeoutException e){
+            Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+            String browserName = cap.getBrowserName().toLowerCase();
+            System.out.println(browserName);
+            if(browserName.equals("internet explorer")){
+                JavascriptExecutor executor = (JavascriptExecutor) driver;
+            WebElement currentStatus = driver.findElement(By.cssSelector(
+                    "#statusButton > span.ui-button-text.ui-c"));
+            executor.executeScript("arguments[0].click();", button_Yes);
+            } else {
+                button_Yes.click();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return driver;
     }

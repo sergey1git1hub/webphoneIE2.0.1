@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="regression">
-    <test name="TwoLinesAgentHangup">
+   <!-- <test name="TwoLinesAgentHangup">
         <classes>
             <class name="TwoLinesAgentHangup"/>
         </classes>
@@ -11,9 +11,9 @@
         <classes>
             <class name="TwoLinesClientHangup"/>
         </classes>
-    </test>
+    </test>-->
 
-    <test name="PDPreviewFreeCallIE">
+    <!--<test name="PDPreviewFreeCallIE">
         <classes>
             <class name="PDPreviewFreeCall">
                 <methods>
@@ -22,7 +22,6 @@
             </class>
         </classes>
     </test>
-
     <test name="PDPreviewFreeAUX">
          <classes>
              <class name="PDPreviewFreeAUX">
@@ -31,7 +30,7 @@
                  </methods>
              </class>
          </classes>
-     </test>
+     </test>-->
      <test name="PDProgressiveReleasedAgentHangup">
         <classes>
             <class name="PDProgressiveReleasedAgentHangup">
@@ -40,7 +39,7 @@
                     <include name="changeStatusToAUX"/>
                     <include name="runSQLQuery"/>
                     <include name="waitForCallOnClientSide"/>
-                    <include name="noIncomingCallToAgent"/>
+                    <include name="noIncomingCallToClient"/>
                     <include name="changeStatusToAvailable"/>
                     <include name="waitForCallOnClientSide2"/>
                     <include name="receiveIncomingCallToAgent"/>

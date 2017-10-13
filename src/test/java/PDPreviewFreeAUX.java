@@ -12,6 +12,7 @@ import java.sql.SQLException;
 public class PDPreviewFreeAUX {
     static Data data;
     static WebDriver driver;
+    static boolean debug = true;
 
     @Test
     public static void pDPreviewFreeAUX() throws InterruptedException, IOException, FindFailed, SQLException, ClassNotFoundException {
@@ -20,7 +21,9 @@ public class PDPreviewFreeAUX {
         Methods.switchToAdTab(PreviewFree.driver);
         PreviewFree.changeStatusToAUX();
         Methods.runSqlQuery("pd_5009_3", "94949");
-        Thread.sleep(20000);
+        if(debug == true)
+        Thread.sleep(5000);
+         else Thread.sleep(20000);
         PreviewFree.changeStatusToAvailable();
         //no incoming call
         PreviewFree.processCall();

@@ -48,13 +48,13 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "waitForCallOnClientSide")
-    public static void noIncomingCallToAgent() throws InterruptedException {
+    public static void noIncomingCallToClient() throws InterruptedException {
         if(debug == true)
         Thread.sleep(5000);
         else Thread.sleep(20000);
     }
 
-    @Test(dependsOnMethods = "noIncomingCallToAgent")
+    @Test(dependsOnMethods = "noIncomingCallToClient")
     public static void changeStatusToAvailable(){
         Methods.changeStatus(driver, "Available");
         Methods.checkStatus(driver, "Available", 3);
@@ -62,7 +62,14 @@ public class PDProgressiveReleasedAgentHangup {
 
     @Test(dependsOnMethods = "changeStatusToAvailable")
     public static void waitForCallOnClientSide2() throws FindFailed, InterruptedException {
+        try{
         Methods.cxAnswer();
+        } catch(Exception e){
+            e.printStackTrace();
+            WebDriver driverTemp = Methods.loginToPD();
+            Methods.runPDCampaign(driverTemp, 257);
+            Methods.cxAnswer();
+        }
     }
 
     @Test(dependsOnMethods = "waitForCallOnClientSide2")
@@ -83,6 +90,6 @@ public class PDProgressiveReleasedAgentHangup {
 
     @AfterClass
     public void teardown() {
-
+        driver.quit();
     }
 }

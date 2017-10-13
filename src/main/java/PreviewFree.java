@@ -41,8 +41,22 @@ public class PreviewFree {
 
 
     public static void processCall() throws InterruptedException, FindFailed {
-        Methods.agentAcceptCall(driver);
+        try{
+            System.out.println("try{");
+        Methods.agentAcceptCall(driver, 30);
+        System.out.println("Methods.agentAcceptCall(driver, 30);");
+        } catch(Exception e){
+            e.printStackTrace();
+            System.out.println("} catch(Exception e){");
+            WebDriver driverTemp = Methods.loginToPD();
+            System.out.println("WebDriver driverTemp = Methods.loginToPD();");
+            Methods.runPDCampaign(driverTemp, 252);
+            System.out.println("Methods.runPDCampaign(driverTemp, 252);");
+            Methods.agentAcceptCall(driver, 30);
+            System.out.println("Methods.agentAcceptCall(driver, 30);");
+        }
         Methods.cxAnswer();
+        System.out.println("Methods.cxAnswer();");
         Methods.saveCRMCard(driver);
         Methods.checkStatus(driver, "Relax", 3);
         Methods.checkStatus(driver, "Available", 6);

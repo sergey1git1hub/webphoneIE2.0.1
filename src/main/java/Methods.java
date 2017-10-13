@@ -1,10 +1,8 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.App;
@@ -20,7 +18,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.regex.Pattern;
 
+import static data.Data.PDUrl;
 import static data.Data.agentChrome;
+import static data.Data.agentPD;
 import static helpMethods.HelpMethods.handleLogoutWindow;
 import static methods.Methods.driver;
 import static methods.Methods.fast;
@@ -36,6 +36,7 @@ public class Methods {
     static boolean killProcess = true;
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
+        System.out.println("openWebphoneLoginPage");
         if (browser == "chrome") {
             System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
             driver = new ChromeDriver();
@@ -63,6 +64,7 @@ public class Methods {
                 public void run() {
                     Screen screen;
                     try {
+                        System.out.println("openWebphoneLoginPage.updateJavaLater");
                         screen = new Screen();
 
                         org.sikuli.script.Pattern checkbox_doNotAskAgain = new org.sikuli.script.Pattern("C:\\SikuliImages\\checkbox_doNotAskAgain.png");
@@ -76,6 +78,7 @@ public class Methods {
                         findFailed.printStackTrace();
                     }
                     try {
+                        System.out.println("openWebphoneLoginPage.DoYouWantToRunThisApplication");
                         screen = new Screen();
                         ;
                         org.sikuli.script.Pattern checkbox_acceptTheRisk = new org.sikuli.script.Pattern("C:\\SikuliImages\\checkbox_acceptTheRisk.png");
@@ -111,6 +114,7 @@ public class Methods {
     }
 
     public static WebDriver login(WebDriver driver, String method, String username, String group) throws InterruptedException {
+        System.out.println("login");
         if (method == "sso") {
             WebElement button_SSO = driver.findElement(By.cssSelector("#ssoButton > span"));
             String winHandleBefore = driver.getWindowHandle();
@@ -169,6 +173,7 @@ public class Methods {
     }
 
     public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) {
+        System.out.println("checkStatus");
         WebDriverWait waitForStatus = new WebDriverWait(driver, waitTime);
         waitForStatus.until(ExpectedConditions.textMatches(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"), Pattern.compile(".*\\b" + status + "\\b.*")));
@@ -179,6 +184,7 @@ public class Methods {
     }
 
     public static WebDriver changeStatus(WebDriver driver, String status) {
+        System.out.println("changeStatus");
         if (browser == "chrome") {
             WebElement currentStatus = driver.findElement(By.cssSelector(
                     "#statusButton > span.ui-button-text.ui-c"));
@@ -213,6 +219,7 @@ public class Methods {
     }
 
     public static WebDriver switchLine(WebDriver driver, int line) throws FindFailed {
+        System.out.println("switchLine");
         if (browser == "chrome") {
             WebElement lineElement = driver.findElement(By.cssSelector("[id = 'btn_line_" + line + "_span']"));
             lineElement.click();
@@ -223,12 +230,14 @@ public class Methods {
                             .executeScript("wp_common.wp_ChangeLine(" + line + "); log(event);");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return driver;
     }
 
     public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException {
+        System.out.println("call");
         switchLine(driver, line);
         Thread.sleep(500);
         WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
@@ -239,6 +248,7 @@ public class Methods {
     }
 
     public static void cxAnswer() throws FindFailed, InterruptedException {
+        System.out.println("cxAnswer");
         App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
         Screen screen = new Screen();
         org.sikuli.script.Pattern button_3CXAcceptCall = new org.sikuli.script.Pattern("C:\\SikuliImages\\button_3CXAcceptCall.png");
@@ -253,6 +263,8 @@ public class Methods {
     }
 
     public static WebDriver agentHangup(WebDriver driver, int line) throws FindFailed, InterruptedException {
+
+        System.out.println("agentHangup");
         switchLine(driver, line);
         Thread.sleep(500);
         JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -284,6 +296,7 @@ public class Methods {
     }
 
     public static WebDriver setWebphoneResultCode(WebDriver driver) throws InterruptedException {
+        System.out.println("setWebphoneResultCode");
         if (browser == "chrome") {
             WebDriverWait waitForResultCode = new WebDriverWait(driver, 5);
             waitForResultCode.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[text()='Удачно']")));
@@ -310,12 +323,14 @@ public class Methods {
     }
 
     public static WebDriver switchToAdTab(WebDriver driver) {
+        System.out.println("switchToAdTab");
         WebElement adTab = driver.findElement(By.xpath("//a[@href = '#tabView:tab123']"));
         adTab.click();
         return driver;
     }
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        System.out.println("getConnection");
         String userName = "GBWebPhoneTest";
         String password = "yt~k$tCW8%Gj";
         String url = "jdbc:sqlserver://172.21.7.225\\\\corporate;DatabaseName=GBWebPhoneTest;portNumber=1438";
@@ -325,6 +340,7 @@ public class Methods {
     }
 
     public static void updateRecord(Connection con, String dbTable, String dbPhoneNumber) throws SQLException {
+        System.out.println("updateRecord");
         String query;
         query = "INSERT INTO GBWebPhoneTest.dbo." + dbTable + "(phone_number_1)"
                 + " VALUES ('" + dbPhoneNumber + "');";
@@ -333,6 +349,7 @@ public class Methods {
     }
 
     public static void runSqlQuery(String dbTable, String dbPhoneNumber) throws SQLException, ClassNotFoundException {
+        System.out.println("runSqlQuery");
         updateRecord(getConnection(), dbTable, dbPhoneNumber);
     }
 
@@ -341,15 +358,30 @@ public class Methods {
         runSqlQuery("pd_5009_3", "94949");
     }*/
 
-    public static WebDriver agentAcceptCall(WebDriver driver) {
-        WebDriverWait waitForButtonAccept = new WebDriverWait(driver, 20);
+    public static WebDriver agentAcceptCall(WebDriver driver, int waitTime) throws InterruptedException {
+        System.out.println("agentAcceptCall");
+        WebDriverWait waitForButtonAccept = new WebDriverWait(driver, waitTime);
+        System.out.println("WebDriverWait waitForButtonAccept = new WebDriverWait(driver, waitTime);");
         waitForButtonAccept.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#btn_preview_accept")));
+        System.out.println("waitForButtonAccept.until(ExpectedConditions.elementToBeClickable(By.cssSelector(\"#btn_preview_accept\")));");
         WebElement button_Accept = driver.findElement(By.cssSelector("#btn_preview_accept"));
+        System.out.println("WebElement button_Accept = driver.findElement(By.cssSelector(\"#btn_preview_accept\"));");
+       //if not wait, CRM card not opened
+        Thread.sleep(500);
+        if(isIE(driver) == true){
+            System.out.println("if(isIE(driver) == true){" + isIE(driver));
+            clickIEelement(driver, button_Accept);
+            System.out.println("clickIEelement(button_Accept);");
+        } else{
+            System.out.println("} else{");
         button_Accept.click();
+            System.out.println("button_Accept.click();");
+        }
         return driver;
     }
 
     public static WebDriver saveCRMCard(WebDriver driver) throws FindFailed {
+        System.out.println("saveCRMCard");
         WebDriverWait waitForIncallStatus = new WebDriverWait(driver, 5);
         waitForIncallStatus.until(ExpectedConditions.textMatches(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"), Pattern.compile(".*\\bIncall\\b.*")));
@@ -382,5 +414,76 @@ public class Methods {
         screen.click(button_save);
         return driver;
     }
+
+    public static WebDriver loginToPD() throws InterruptedException {
+        System.out.println("loginToPD");
+        System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
+        WebDriver agentPD = new ChromeDriver();
+        agentPD.manage().window().maximize();
+        agentPD.get(PDUrl);
+
+        System.out.println(agentPD.getTitle());
+ /*       if(agentPD.getTitle() == "Доступ запрещён!"){
+            System.out.println("Inside if");
+            agentPD.navigate().refresh();
+        }*/
+        Thread.sleep(3000);
+        agentPD.navigate().refresh();
+        Assert.assertEquals(agentPD.getTitle(), "gbpowerdialer");
+
+        Thread.sleep(1000);
+        WebElement username = agentPD.findElement(By.cssSelector("#username"));
+        username.sendKeys("81016");
+        WebElement password = agentPD.findElement(By.cssSelector("#password"));
+        password.sendKeys("1");
+        WebElement button_SignIn = agentPD.findElement(By.cssSelector("#loginModal > div > div > form > div.modal-footer > button"));
+        button_SignIn.click();
+        return agentPD;
+    }
+    public static void runPDCampaign(WebDriver agentPD, int campaignId) throws InterruptedException {
+        System.out.println("runPDCampaign");
+        Thread.sleep(2000);
+
+/*        WebDriverWait waitForId = new WebDriverWait(agentPD, 2);
+        waitForId.until(ExpectedConditions.elementToBeClickable(By.xpath("/*//*[text() = '257']")));*/
+        WebElement columns = agentPD.findElement(By.xpath("//*[@id=\"campaignGrid\"]/div/div[1]"));
+        columns.click();
+        Thread.sleep(1000);
+
+        WebElement id = agentPD.findElement(By.xpath("//*[@id=\"menuitem-13\"]/button"));
+        id.click();
+        Thread.sleep(1000);
+        WebElement running = agentPD.findElement(By.xpath("//*[text() = '" + campaignId + "']//parent::div//following-sibling::div[3]//div"));
+
+
+        System.out.println(running.getText());
+        if (!running.getText().equals("Running")) {
+            WebElement currentCampaign = agentPD.findElement(By.xpath("//*[text() = '" + campaignId + "']"));
+            currentCampaign.click();
+            WebElement icon_Enable = agentPD.findElement(By.cssSelector("#navbarCompainList > div > div:nth-child(7) > button"));
+            icon_Enable.click();
+            WebElement button_Enable = agentPD.findElement(By.cssSelector("#navbarCompainList > div > div.btn-group.open > ul > li:nth-child(1) > a"));
+            button_Enable.click();
+            Thread.sleep(1000);
+            WebElement button_Start = agentPD.findElement(By.cssSelector("#navbarCompainList > div > button.btn.btn-success.btn-sm.navbar-btn"));
+            button_Start.click();
+        }
+        agentPD.quit();
+    }
+
+    public static boolean isIE(WebDriver driver){
+        System.out.println("isIE");
+        Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+        String browserName = cap.getBrowserName().toLowerCase();
+        System.out.println(browserName);
+        if(browserName.equals("internet explorer"))
+        return true; else return false;
+    }
+
+     public static void clickIEelement(WebDriver driver, WebElement element)   {
+         System.out.println("clickIEelement");
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", element);
+     }
 
 }
