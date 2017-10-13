@@ -24,7 +24,12 @@ public class PDPreviewFreeCall {
     }
 
     @AfterClass
-    public void teardown(){
+    public void teardown() throws IOException {
+        boolean isIE = Methods.isIE(PreviewFree.driver);
         PreviewFree.driver.quit();
+
+        if(isIE){
+            Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+        }
     }
 }

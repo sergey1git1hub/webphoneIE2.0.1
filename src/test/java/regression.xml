@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="regression">
-   <!-- <test name="TwoLinesAgentHangup">
+    <test name="TwoLinesAgentHangup">
         <classes>
             <class name="TwoLinesAgentHangup"/>
         </classes>
@@ -11,9 +11,9 @@
         <classes>
             <class name="TwoLinesClientHangup"/>
         </classes>
-    </test>-->
+    </test>
 
-    <!--<test name="PDPreviewFreeCallIE">
+    <test name="PDPreviewFreeCallIE">
         <classes>
             <class name="PDPreviewFreeCall">
                 <methods>
@@ -30,7 +30,7 @@
                  </methods>
              </class>
          </classes>
-     </test>-->
+     </test>
      <test name="PDProgressiveReleasedAgentHangup">
         <classes>
             <class name="PDProgressiveReleasedAgentHangup">

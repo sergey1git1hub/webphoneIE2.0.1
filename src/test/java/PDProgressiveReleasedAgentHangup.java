@@ -89,7 +89,12 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @AfterClass
-    public void teardown() {
+    public void teardown() throws IOException {
+        boolean isIE = Methods.isIE(driver);
         driver.quit();
+
+        if(isIE){
+            Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+        }
     }
 }

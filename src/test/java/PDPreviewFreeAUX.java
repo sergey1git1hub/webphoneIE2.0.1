@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.sikuli.script.FindFailed;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -30,7 +31,12 @@ public class PDPreviewFreeAUX {
     }
 
     @AfterClass
-    public void teardown(){
+    public void teardown() throws IOException {
+        boolean isIE = Methods.isIE(PreviewFree.driver);
         PreviewFree.driver.quit();
+
+        if(isIE){
+            Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+        }
     }
 }
