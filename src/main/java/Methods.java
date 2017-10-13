@@ -12,6 +12,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -295,9 +297,19 @@ public class Methods {
         screen.click(closePhoneWindow);
     }
 
-    public static WebDriver setWebphoneResultCode(WebDriver driver) throws InterruptedException {
+    public static WebDriver setWebphoneResultCode(WebDriver driver) throws InterruptedException, UnknownHostException, FindFailed {
         System.out.println("setWebphoneResultCode");
-        if (browser == "chrome") {
+        String hostName = InetAddress.getLocalHost().getHostName();
+        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+            Screen screen = new Screen();
+            org.sikuli.script.Pattern resultCodeUdachno = new org.sikuli.script.Pattern("C:\\SikuliImages\\resultCodeUdachno.png");
+            screen.wait(resultCodeUdachno, 10);
+            screen.click(resultCodeUdachno);
+            Thread.sleep(1000); //necessary
+            WebElement button_Save = driver.findElement(By.cssSelector("#btn_rslt > span.ui-button-text.ui-c"));
+            button_Save.click();
+        } else
+        if (isIE(driver) == false) {
             WebDriverWait waitForResultCode = new WebDriverWait(driver, 5);
             waitForResultCode.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[text()='Удачно']")));
 
