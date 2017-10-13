@@ -24,7 +24,7 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "IELogin")
-    public static void changeStatusToAUX() {
+    public static void changeStatusToAUX() throws InterruptedException, FindFailed, UnknownHostException {
         Methods.changeStatus(driver, "AUX");
         Methods.checkStatus(driver, "AUX", 3);
     }
@@ -56,7 +56,7 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "noIncomingCallToClient")
-    public static void changeStatusToAvailable(){
+    public static void changeStatusToAvailable() throws InterruptedException, FindFailed, UnknownHostException {
         Methods.changeStatus(driver, "Available");
         Methods.checkStatus(driver, "Available", 3);
     }

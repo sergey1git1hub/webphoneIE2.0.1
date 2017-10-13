@@ -189,7 +189,7 @@ public class Methods {
         System.out.println("changeStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
         if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
-            if(status == "Available"){
+            if(status.equalsIgnoreCase("Available")){
             Screen screen = new Screen();
             org.sikuli.script.Pattern currentStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\currentStatus.png");
             screen.wait(currentStatus, 10);
@@ -199,6 +199,17 @@ public class Methods {
             org.sikuli.script.Pattern availableStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\availableStatus.png");
             screen.wait(availableStatus, 10);
             screen.click(availableStatus);
+            }
+            if(status.equalsIgnoreCase("AUX")){
+                Screen screen = new Screen();
+                org.sikuli.script.Pattern currentStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\currentStatus.png");
+                screen.wait(currentStatus, 10);
+                //Thread.sleep(2000);
+                screen.click(currentStatus);
+                Thread.sleep(1000);
+                org.sikuli.script.Pattern auxStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\auxStatus.png");
+                screen.wait(auxStatus, 10);
+                screen.click(auxStatus);
             }
             checkStatus(driver, status, 2);
         } else

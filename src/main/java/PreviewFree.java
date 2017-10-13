@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 /**
  * Created by SChubuk on 04.10.2017.
@@ -28,13 +29,13 @@ public class PreviewFree {
     }
 
 
-    public static void changeStatusToAvailable(){
+    public static void changeStatusToAvailable() throws InterruptedException, FindFailed, UnknownHostException {
         Methods.changeStatus(driver, "Available");
         Methods.checkStatus(driver, "Available", 3);
 
     }
 
-    public static void changeStatusToAUX(){
+    public static void changeStatusToAUX() throws InterruptedException, FindFailed, UnknownHostException {
         Methods.changeStatus(driver, "AUX");
         Methods.checkStatus(driver, "AUX", 3);
     }
