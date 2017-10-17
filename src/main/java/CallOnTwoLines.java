@@ -29,11 +29,12 @@ public class CallOnTwoLines {
     public static void IELogin() throws InterruptedException, IOException {
         driver = Methods.openWebphoneLoginPage(driver, data.browser, data.webphoneUrl);
         Methods.login(driver, data.method, data.username, data.group);
-        Methods.checkStatus(driver, "Available", 10);
+        Methods.checkStatus(driver, "Available", 30);
     }
 
 
     public static WebDriver callOnFirstLine() throws FindFailed, InterruptedException {
+        Methods.openCXphone();
         Methods.call(driver, 1, "94949");
         Methods.cxAnswer();
         return driver;

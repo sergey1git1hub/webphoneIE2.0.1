@@ -275,9 +275,18 @@ public class Methods {
         return driver;
     }
 
-    public static void cxAnswer() throws FindFailed, InterruptedException {
-        System.out.println("cxAnswer");
+    public static void openCXphone() throws FindFailed, InterruptedException {
+        System.out.println("openCXphone");
         App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
+        Thread.sleep(2000);
+        Screen screen = new Screen();
+
+        org.sikuli.script.Pattern closePhoneWindow = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
+        screen.wait(closePhoneWindow, 10);
+        screen.click(closePhoneWindow);
+    }
+
+    public static void cxAnswer() throws FindFailed, InterruptedException {
         Screen screen = new Screen();
         org.sikuli.script.Pattern button_3CXAcceptCall = new org.sikuli.script.Pattern("C:\\SikuliImages\\button_3CXAcceptCall.png");
         screen.wait(button_3CXAcceptCall, 10);
