@@ -264,15 +264,27 @@ public class Methods {
         return driver;
     }
 
-    public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException {
+    public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException, UnknownHostException {
+        String hostName = InetAddress.getLocalHost().getHostName();
+
         System.out.println("call");
         switchLine(driver, line);
         Thread.sleep(500);
         WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
         phoneNumberField.sendKeys(number);
         WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
+        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+
+            /*Screen screen = new Screen();
+            screen.wait();
+            screen.click();*/
+            JavascriptExecutor executor = (JavascriptExecutor) driver;
+            executor.executeScript("arguments[0].click();", button_Call);
+        } else{
         button_Call.click();
+    }
         return driver;
+
     }
 
     public static void openCXphone(int waitTime) throws FindFailed, InterruptedException {

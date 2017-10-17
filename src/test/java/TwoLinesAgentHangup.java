@@ -40,7 +40,7 @@ public class TwoLinesAgentHangup {
         }
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void closeCXphone() throws IOException {
         Runtime.getRuntime().exec("taskkill /F /IM 3CXPhone.exe");
     }
