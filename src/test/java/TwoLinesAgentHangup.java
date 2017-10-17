@@ -2,10 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.sikuli.script.FindFailed;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -41,6 +38,11 @@ public class TwoLinesAgentHangup {
         if(isIE){
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
         }
+    }
+
+    @AfterSuite
+    public void closeCXphone() throws IOException {
+        Runtime.getRuntime().exec("taskkill /F /IM 3CXPhone.exe");
     }
 }
 
