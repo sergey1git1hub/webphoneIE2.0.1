@@ -275,10 +275,10 @@ public class Methods {
         return driver;
     }
 
-    public static void openCXphone() throws FindFailed, InterruptedException {
+    public static void openCXphone(int waitTime) throws FindFailed, InterruptedException {
         System.out.println("openCXphone");
         App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
-        Thread.sleep(2000);
+        Thread.sleep(waitTime);
         Screen screen = new Screen();
 
         org.sikuli.script.Pattern closePhoneWindow = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
@@ -427,7 +427,7 @@ public class Methods {
         return driver;
     }
 
-    public static WebDriver saveCRMCard(WebDriver driver) throws FindFailed {
+    public static WebDriver saveCRMCard(WebDriver driver) throws FindFailed, InterruptedException {
         System.out.println("saveCRMCard");
         WebDriverWait waitForIncallStatus = new WebDriverWait(driver, 5);
         waitForIncallStatus.until(ExpectedConditions.textMatches(By.cssSelector(
@@ -456,7 +456,7 @@ public class Methods {
         org.sikuli.script.Pattern callLater = new org.sikuli.script.Pattern("C:\\SikuliImages\\callLater.png");
         screen.wait(callLater, 10);
         screen.click(callLater);
-
+        Thread.sleep(2000);
         screen.wait(button_save, 10);
         screen.click(button_save);
         return driver;

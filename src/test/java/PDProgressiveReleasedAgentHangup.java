@@ -40,8 +40,9 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "changeStatusToAUX")
-    public static void runSQLQuery() throws SQLException, ClassNotFoundException {
+    public static void runSQLQuery() throws SQLException, ClassNotFoundException, InterruptedException, FindFailed {
         Methods.runSqlQuery("pd_5220copy", "94949");
+        Methods.openCXphone(2000);
     }
 
     @Test(dependsOnMethods = "runSQLQuery")

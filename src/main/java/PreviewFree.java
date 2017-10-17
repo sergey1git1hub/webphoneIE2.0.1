@@ -25,7 +25,7 @@ public class PreviewFree {
     public static void IELoginAD() throws InterruptedException, IOException {
         driver = Methods.openWebphoneLoginPage(driver, data.browser, data.webphoneUrl);
         Methods.login(driver, data.method, data.username, data.group);
-        Methods.checkStatus(driver, "Тренинг", 10);
+        Methods.checkStatus(driver, "Тренинг", 20);
     }
 
 
@@ -44,6 +44,7 @@ public class PreviewFree {
     public static void processCall() throws InterruptedException, FindFailed {
         try{
             System.out.println("try{");
+            Methods.openCXphone(5000);
         Methods.agentAcceptCall(driver, 30);
         System.out.println("Methods.agentAcceptCall(driver, 30);");
         } catch(Exception e){
