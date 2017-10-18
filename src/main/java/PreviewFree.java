@@ -5,6 +5,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 
 /**
@@ -29,19 +30,19 @@ public class PreviewFree {
     }
 
 
-    public static void changeStatusToAvailable() throws InterruptedException, FindFailed, UnknownHostException {
+    public static void changeStatusToAvailable() throws InterruptedException, FindFailed, UnknownHostException, UnsupportedEncodingException {
         Methods.changeStatus(driver, "Available");
         Methods.checkStatus(driver, "Available", 3);
 
     }
 
-    public static void changeStatusToAUX() throws InterruptedException, FindFailed, UnknownHostException {
+    public static void changeStatusToAUX() throws InterruptedException, FindFailed, UnknownHostException, UnsupportedEncodingException {
         Methods.changeStatus(driver, "AUX");
         Methods.checkStatus(driver, "AUX", 3);
     }
 
 
-    public static void processCall() throws InterruptedException, FindFailed {
+    public static void processCall() throws InterruptedException, FindFailed, UnsupportedEncodingException, UnknownHostException {
         try{
             System.out.println("try{");
             Methods.openCXphone(5000);

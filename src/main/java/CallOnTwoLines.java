@@ -7,6 +7,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 
 /**
@@ -54,7 +55,7 @@ public class CallOnTwoLines {
         callOnSecondLine();
     }
 
-    public static void setResultCodeAndCheckAvailableStatus() throws InterruptedException, FindFailed, UnknownHostException {
+    public static void setResultCodeAndCheckAvailableStatus() throws InterruptedException, FindFailed, UnknownHostException, UnsupportedEncodingException {
         Methods.setWebphoneResultCode(driver);
         Methods.checkStatus(driver, "Available", 3);
 

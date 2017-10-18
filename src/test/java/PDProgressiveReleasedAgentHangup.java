@@ -4,6 +4,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
 
@@ -24,7 +25,7 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "IELogin")
-    public static void changeStatusToAUX() throws InterruptedException, FindFailed, UnknownHostException {
+    public static void changeStatusToAUX() throws InterruptedException, FindFailed, UnknownHostException, UnsupportedEncodingException {
         Methods.changeStatus(driver, "AUX");
         Methods.checkStatus(driver, "AUX", 3);
     }
@@ -57,7 +58,7 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "noIncomingCallToClient")
-    public static void changeStatusToAvailable() throws InterruptedException, FindFailed, UnknownHostException {
+    public static void changeStatusToAvailable() throws InterruptedException, FindFailed, UnknownHostException, UnsupportedEncodingException {
         Methods.changeStatus(driver, "Available");
         Methods.checkStatus(driver, "Available", 3);
     }
@@ -85,7 +86,7 @@ public class PDProgressiveReleasedAgentHangup {
     }
 
     @Test(dependsOnMethods = "agentHangup")
-    public static void setResultCodeAndCheckAvailableStatus() throws InterruptedException, FindFailed, UnknownHostException {
+    public static void setResultCodeAndCheckAvailableStatus() throws InterruptedException, FindFailed, UnknownHostException, UnsupportedEncodingException {
         Methods.setWebphoneResultCode(driver);
         Methods.checkStatus(driver, "Available", 3);
     }

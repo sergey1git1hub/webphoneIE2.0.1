@@ -12,6 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Connection;
@@ -174,18 +175,25 @@ public class Methods {
         return driver;
     }
 
-    public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) {
+    public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) throws UnknownHostException, UnsupportedEncodingException {
         System.out.println("checkStatus");
+        String hostName = InetAddress.getLocalHost().getHostName();
+        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+            byte[] b = status.getBytes("Cp1252");
+            //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
+            status = new String(b, "UTF-16");
+        }
         WebDriverWait waitForStatus = new WebDriverWait(driver, waitTime);
         waitForStatus.until(ExpectedConditions.textMatches(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"), Pattern.compile(".*\\b" + status + "\\b.*")));
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
         Assert.assertTrue(currentStatus.getText().contains(status));
+
         return driver;
     }
 
-    public static WebDriver changeStatus(WebDriver driver, String status) throws UnknownHostException, FindFailed, InterruptedException {
+    public static WebDriver changeStatus(WebDriver driver, String status) throws UnknownHostException, FindFailed, InterruptedException, UnsupportedEncodingException {
         System.out.println("changeStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
         if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
