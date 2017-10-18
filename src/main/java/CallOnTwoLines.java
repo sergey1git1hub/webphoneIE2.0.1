@@ -35,7 +35,7 @@ public class CallOnTwoLines {
 
 
     public static WebDriver callOnFirstLine() throws FindFailed, InterruptedException, UnknownHostException {
-        Methods.openCXphone(2000);
+        Methods.openCXphone(5000);
         Methods.call(driver, 1, "94949");
         Methods.cxAnswer();
         return driver;

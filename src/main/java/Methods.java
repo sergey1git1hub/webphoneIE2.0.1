@@ -297,10 +297,15 @@ public class Methods {
 
     public static void openCXphone(int waitTime) throws FindFailed, InterruptedException {
         System.out.println("openCXphone");
-        App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
-        Thread.sleep(waitTime);
-        Screen screen = new Screen();
+        /*try{
+            App cxphone = App.focus("3CXPhone.exe");
+        } catch (Exception e){
+            e.printStackTrace();*/
+            App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
+            Thread.sleep(waitTime);
+       /* }*/
 
+        Screen screen = new Screen();
         org.sikuli.script.Pattern closePhoneWindow = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
         screen.wait(closePhoneWindow, 10);
         screen.click(closePhoneWindow);
