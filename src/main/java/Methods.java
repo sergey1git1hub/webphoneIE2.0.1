@@ -37,6 +37,7 @@ public class Methods {
     public static String browser;
     public static boolean onJenkins;
     static boolean killProcess = true;
+    static boolean debug = false;
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
         System.out.println("openWebphoneLoginPage");
@@ -78,7 +79,9 @@ public class Methods {
                         screen.wait(option_updateJavaLater, 2);
                         screen.click(option_updateJavaLater);
                     } catch (FindFailed findFailed) {
+                        if(debug == true)
                         findFailed.printStackTrace();
+                        else System.out.println("There is no update java later window!");
                     }
                     try {
                         System.out.println("openWebphoneLoginPage.DoYouWantToRunThisApplication");
@@ -92,7 +95,9 @@ public class Methods {
                         screen.wait(button_Run, 2);
                         screen.click(button_Run);
                     } catch (FindFailed findFailed) {
-                        findFailed.printStackTrace();
+                        if(debug == true)
+                            findFailed.printStackTrace();
+                        else System.out.println("There is no do you want to run this application window!");
                     }
                 }
             };
@@ -266,7 +271,9 @@ public class Methods {
                             .executeScript("wp_common.wp_ChangeLine(" + line + "); log(event);");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                if(debug == true)
+                    e.printStackTrace();
+                else System.out.println("JavaScript execution error!");
             }
         }
         return driver;
@@ -295,15 +302,16 @@ public class Methods {
 
     }
 
-    public static void openCXphone(int waitTime) throws FindFailed, InterruptedException {
+    public static void openCXphone(int waitTime) throws FindFailed, InterruptedException, IOException {
         System.out.println("openCXphone");
-        /*try{
-            App cxphone = App.focus("3CXPhone.exe");
-        } catch (Exception e){
-            e.printStackTrace();*/
+        String hostName = InetAddress.getLocalHost().getHostName();
+        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+            Runtime.getRuntime().exec("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
+        } else {
             App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
             Thread.sleep(waitTime);
-       /* }*/
+        }
+
 
         Screen screen = new Screen();
         org.sikuli.script.Pattern closePhoneWindow = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
