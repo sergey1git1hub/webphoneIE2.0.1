@@ -305,13 +305,12 @@ public class Methods {
     public static void openCXphone(int waitTime) throws FindFailed, InterruptedException, IOException {
         System.out.println("openCXphone");
         String hostName = InetAddress.getLocalHost().getHostName();
-   /*     if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
-            Runtime.getRuntime().exec("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
-            Thread.sleep(10000);
-        } else {*/
+        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+
+        } else {
             App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
             Thread.sleep(waitTime);
-       /* }*/
+        }
 
 
         Screen screen = new Screen();
