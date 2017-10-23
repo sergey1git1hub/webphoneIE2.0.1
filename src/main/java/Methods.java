@@ -42,22 +42,31 @@ public class Methods {
     static boolean debug = true;
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
-                                                                                                                                                            log.debug("START");
-                                                                                                                                                            log.trace("if (browser == \"chrome\") {");
+        log.debug("START");
+        log.trace("if (browser == \"chrome\") {");
         if (browser == "chrome") {
-            System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");                                                              log.trace("System.setProperty(\"webdriver.chrome.driver\", \"C:/chromedriver/chromedriver.exe\");");
-            driver = new ChromeDriver();                                                                                                                    log.trace("driver = new ChromeDriver();");
-            driver.get(webphoneUrl);                                                                                                                        log.trace("driver.get(webphoneUrl);");
-            WebDriverWait waitForTitle = new WebDriverWait(driver, 10);                                                                       log.trace("WebDriverWait waitForTitle = new WebDriverWait(driver, 10);");
-            waitForTitle.until(ExpectedConditions.titleIs("gbwebphone"));                                                                                   log.trace("waitForTitle.until(ExpectedConditions.titleIs(\"gbwebphone\"));");
-            Assert.assertEquals(driver.getTitle(), "gbwebphone");                                                                                        log.trace("Assert.assertEquals(driver.getTitle(), \"gbwebphone\");");
-        } else {                                                                                                                                            log.trace("} else {");
-                                                                                                                                                            log.trace("if(killProcess == true){");
-            if(killProcess == true){
+            System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
+            log.trace("System.setProperty(\"webdriver.chrome.driver\", \"C:/chromedriver/chromedriver.exe\");");
+            driver = new ChromeDriver();
+            log.trace("driver = new ChromeDriver();");
+            driver.get(webphoneUrl);
+            log.trace("driver.get(webphoneUrl);");
+            WebDriverWait waitForTitle = new WebDriverWait(driver, 10);
+            log.trace("WebDriverWait waitForTitle = new WebDriverWait(driver, 10);");
+            waitForTitle.until(ExpectedConditions.titleIs("gbwebphone"));
+            log.trace("waitForTitle.until(ExpectedConditions.titleIs(\"gbwebphone\"));");
+            Assert.assertEquals(driver.getTitle(), "gbwebphone");
+            log.trace("Assert.assertEquals(driver.getTitle(), \"gbwebphone\");");
+        } else {
+            log.trace("} else {");
+            log.trace("if(killProcess == true){");
+            if (killProcess == true) {
                 Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");
                 log.trace("Runtime.getRuntime().exec(\"taskkill /F /IM IEDriverServer.exe\");");
-            killProcess = false;                                                                                                                            log.trace("killProcess = false;");
-            }                                                                                                                                               log.trace(" }");
+                killProcess = false;
+                log.trace("killProcess = false;");
+            }
+            log.trace(" }");
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
             log.trace("Runtime.getRuntime().exec(\"taskkill /F /IM iexplore.exe\");");
             System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
@@ -104,18 +113,15 @@ public class Methods {
                         screen.click(option_updateJavaLater);
                         log.trace("screen.click(option_updateJavaLater);");
                         log.trace("}");
-                    }
-                    catch (FindFailed findFailed) {
+                    } catch (FindFailed findFailed) {
                         log.trace("catch (FindFailed findFailed) {");
                         log.trace("if(debug == true){");
-                        if(debug == true){
+                        if (debug == true) {
 
-                        findFailed.printStackTrace();
+                            findFailed.printStackTrace();
                             log.trace("findFailed.printStackTrace();");
                             log.trace("}");
-                        }
-
-                        else {
+                        } else {
                             System.out.println("There is no update java later window!");
                         }
                     }
@@ -140,17 +146,13 @@ public class Methods {
                         screen.click(button_Run);
                         log.trace("screen.click(button_Run);");
                         log.trace("}");
-                    }
-
-                    catch (FindFailed findFailed) {
+                    } catch (FindFailed findFailed) {
                         log.trace("catch (FindFailed findFailed) {");
                         log.trace("if(debug == true){");
-                        if(debug == true){
+                        if (debug == true) {
                             log.trace("findFailed.printStackTrace();");
                             findFailed.printStackTrace();
-                        }
-                        else
-                        {
+                        } else {
                             log.trace("else  {");
                             System.out.println("There is no do you want to run this application window!");
                             log.trace("System.out.println(\"There is no do you want to run this application window!\");");
@@ -256,7 +258,7 @@ public class Methods {
     public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) throws UnknownHostException, UnsupportedEncodingException {
         System.out.println("checkStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
-        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
             byte[] b = status.getBytes("Cp1252");
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
             status = new String(b, "UTF-16");
@@ -274,19 +276,19 @@ public class Methods {
     public static WebDriver changeStatus(WebDriver driver, String status) throws UnknownHostException, FindFailed, InterruptedException, UnsupportedEncodingException {
         System.out.println("changeStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
-        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
-            if(status.equalsIgnoreCase("Available")){
-            Screen screen = new Screen();
-            org.sikuli.script.Pattern currentStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\currentStatus.png");
-            screen.wait(currentStatus, 10);
-            Thread.sleep(1000);
-            screen.click(currentStatus);
-            Thread.sleep(1000);
-            org.sikuli.script.Pattern availableStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\availableStatus.png");
-            screen.wait(availableStatus, 10);
-            screen.click(availableStatus);
+        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
+            if (status.equalsIgnoreCase("Available")) {
+                Screen screen = new Screen();
+                org.sikuli.script.Pattern currentStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\currentStatus.png");
+                screen.wait(currentStatus, 10);
+                Thread.sleep(1000);
+                screen.click(currentStatus);
+                Thread.sleep(1000);
+                org.sikuli.script.Pattern availableStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\availableStatus.png");
+                screen.wait(availableStatus, 10);
+                screen.click(availableStatus);
             }
-            if(status.equalsIgnoreCase("AUX")){
+            if (status.equalsIgnoreCase("AUX")) {
                 Screen screen = new Screen();
                 org.sikuli.script.Pattern currentStatus = new org.sikuli.script.Pattern("C:\\SikuliImages\\currentStatus.png");
                 screen.wait(currentStatus, 10);
@@ -298,8 +300,7 @@ public class Methods {
                 screen.click(auxStatus);
             }
             checkStatus(driver, status, 2);
-        } else
-        if (browser == "chrome") {
+        } else if (browser == "chrome") {
             WebElement currentStatus = driver.findElement(By.cssSelector(
                     "#statusButton > span.ui-button-text.ui-c"));
             currentStatus.click();
@@ -344,7 +345,7 @@ public class Methods {
                             .executeScript("wp_common.wp_ChangeLine(" + line + "); log(event);");
                 }
             } catch (Exception e) {
-                if(debug == true)
+                if (debug == true)
                     e.printStackTrace();
                 else System.out.println("JavaScript execution error!");
             }
@@ -353,24 +354,36 @@ public class Methods {
     }
 
     public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException, UnknownHostException {
+        log.debug("START");
         String hostName = InetAddress.getLocalHost().getHostName();
-
+        log.debug("String hostName = InetAddress.getLocalHost().getHostName();");
         System.out.println("call");
         switchLine(driver, line);
+        log.debug("switchLine(driver, line);");
         Thread.sleep(500);
+        log.debug("Thread.sleep(500);");
         WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
+        log.debug(" WebElement phoneNumberField = driver.findElement(By.cssSelector(\"#PhoneNumber\"));");
         phoneNumberField.sendKeys(number);
+        log.debug("phoneNumberField.sendKeys(number);");
         WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
-        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+        log.debug("WebElement button_Call = driver.findElement(By.cssSelector(\"#btn_call\"));");
+        log.debug("if (hostName.equalsIgnoreCase(\"kv1-it-pc-jtest\")) {");
+        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
 
             /*Screen screen = new Screen();
             screen.wait();
             screen.click();*/
             JavascriptExecutor executor = (JavascriptExecutor) driver;
+            log.debug("JavascriptExecutor executor = (JavascriptExecutor) driver;");
             executor.executeScript("arguments[0].click();", button_Call);
-        } else{
-        button_Call.click();
-    }
+            log.debug("executor.executeScript(\"arguments[0].click();\", button_Call);");
+        } else {
+            log.debug("} else{");
+            button_Call.click();
+            log.debug("button_Call.click();");
+        }
+        log.debug("END");
         return driver;
 
     }
@@ -378,7 +391,7 @@ public class Methods {
     public static void openCXphone(int waitTime) throws FindFailed, InterruptedException, IOException {
         System.out.println("openCXphone");
         String hostName = InetAddress.getLocalHost().getHostName();
-        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
 
         } else {
             App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
@@ -397,7 +410,7 @@ public class Methods {
         org.sikuli.script.Pattern button_3CXAcceptCall = new org.sikuli.script.Pattern("C:\\SikuliImages\\button_3CXAcceptCall.png");
         screen.wait(button_3CXAcceptCall, 10);
         screen.click(button_3CXAcceptCall);
-        if(fast = false)
+        if (fast = false)
             Thread.sleep(1000);
         org.sikuli.script.Pattern closePhoneWindow = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
         screen.wait(closePhoneWindow, 10);
@@ -412,8 +425,8 @@ public class Methods {
         Thread.sleep(500);
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         WebElement button_Hangup = driver.findElement(By.cssSelector("#btn_hangup"));
-        if(browser == "chrome")
-        button_Hangup.click();
+        if (browser == "chrome")
+            button_Hangup.click();
         else executor.executeScript("arguments[0].click();", button_Hangup);
         return driver;
     }
@@ -441,7 +454,7 @@ public class Methods {
     public static WebDriver setWebphoneResultCode(WebDriver driver) throws InterruptedException, UnknownHostException, FindFailed {
         System.out.println("setWebphoneResultCode");
         String hostName = InetAddress.getLocalHost().getHostName();
-        if(hostName.equalsIgnoreCase("kv1-it-pc-jtest")){
+        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
             Screen screen = new Screen();
             org.sikuli.script.Pattern resultCodeUdachno = new org.sikuli.script.Pattern("C:\\SikuliImages\\resultCodeUdachno.png");
             screen.wait(resultCodeUdachno, 10);
@@ -449,8 +462,7 @@ public class Methods {
             Thread.sleep(1000); //necessary
             WebElement button_Save = driver.findElement(By.cssSelector("#btn_rslt > span.ui-button-text.ui-c"));
             button_Save.click();
-        } else
-        if (isIE(driver) == false) {
+        } else if (isIE(driver) == false) {
             WebDriverWait waitForResultCode = new WebDriverWait(driver, 5);
             waitForResultCode.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[text()='Удачно']")));
 
@@ -519,15 +531,15 @@ public class Methods {
         System.out.println("waitForButtonAccept.until(ExpectedConditions.elementToBeClickable(By.cssSelector(\"#btn_preview_accept\")));");
         WebElement button_Accept = driver.findElement(By.cssSelector("#btn_preview_accept"));
         System.out.println("WebElement button_Accept = driver.findElement(By.cssSelector(\"#btn_preview_accept\"));");
-       //if not wait, CRM card not opened
+        //if not wait, CRM card not opened
         Thread.sleep(500);
-        if(isIE(driver) == true){
+        if (isIE(driver) == true) {
             System.out.println("if(isIE(driver) == true){" + isIE(driver));
             clickIEelement(driver, button_Accept);
             System.out.println("clickIEelement(button_Accept);");
-        } else{
+        } else {
             System.out.println("} else{");
-        button_Accept.click();
+            button_Accept.click();
             System.out.println("button_Accept.click();");
         }
         return driver;
@@ -593,6 +605,7 @@ public class Methods {
         button_SignIn.click();
         return agentPD;
     }
+
     public static void runPDCampaign(WebDriver agentPD, int campaignId) throws InterruptedException {
         System.out.println("runPDCampaign");
         Thread.sleep(2000);
@@ -624,19 +637,20 @@ public class Methods {
         agentPD.quit();
     }
 
-    public static boolean isIE(WebDriver driver){
+    public static boolean isIE(WebDriver driver) {
         System.out.println("isIE");
         Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
         String browserName = cap.getBrowserName().toLowerCase();
         System.out.println(browserName);
-        if(browserName.equals("internet explorer"))
-        return true; else return false;
+        if (browserName.equals("internet explorer"))
+            return true;
+        else return false;
     }
 
-     public static void clickIEelement(WebDriver driver, WebElement element)   {
-         System.out.println("clickIEelement");
-            JavascriptExecutor executor = (JavascriptExecutor) driver;
-            executor.executeScript("arguments[0].click();", element);
-     }
+    public static void clickIEelement(WebDriver driver, WebElement element) {
+        System.out.println("clickIEelement");
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
 
 }
