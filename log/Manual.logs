@@ -1,0 +1,24 @@
+16:14:55 DEBUG [main] - Methods.openWebphoneLoginPage - START
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - if (browser == "chrome") {
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - } else {
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - if(killProcess == true){
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - killProcess = false;
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage -  }
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+16:14:55 TRACE [main] - Methods.openWebphoneLoginPage - ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+                    true);
+16:14:57 TRACE [main] - Methods.openWebphoneLoginPage - driver = new InternetExplorerDriver(ieCapabilities);
+16:14:57 TRACE [main] - Methods.openWebphoneLoginPage - driver.manage().window().maximize();
+16:14:57 TRACE [main] - Methods.openWebphoneLoginPage - Thread thread1 = new LoaderThread(driver, webphoneUrl);
+16:14:57 TRACE [main] - Methods.openWebphoneLoginPage - thread1.start();
+16:14:57 TRACE [main] - Methods.openWebphoneLoginPage - thread2.start();
+16:14:57 TRACE [Thread-2] - Methods.run - Thread thread2 = new Thread() {
+                public void run() {
+16:14:57 TRACE [Thread-2] - Methods.run -  Screen screen;
+16:14:57 TRACE [Thread-2] - Methods.run - try {
+16:14:57 TRACE [Thread-2] - Methods.run - System.out.println("openWebphoneLoginPage.updateJavaLater");
+16:14:58 TRACE [Thread-2] - Methods.run - screen = new Screen();
+16:14:58 TRACE [Thread-2] - Methods.run - org.sikuli.script.Pattern checkbox_doNotAskAgain = new org.sikuli.script.Pattern("C:\\SikuliImages\\checkbox_doNotAskAgain.png");
