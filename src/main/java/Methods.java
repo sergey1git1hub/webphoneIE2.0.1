@@ -42,7 +42,7 @@ public class Methods {
     static boolean debug = true;
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
-        log.debug("START");
+        log.debug("STARTJENKINS");
         log.trace("if (browser == \"chrome\") {");
         if (browser == "chrome") {
             System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
