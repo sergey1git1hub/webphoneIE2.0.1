@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -15,11 +16,13 @@ import java.net.UnknownHostException;
  */
 
 public class CallOnTwoLines {
+    private static final Logger log = Logger.getLogger("Methods");
     static IEData data;
     static WebDriver driver;
 
 
     public static void createData() {
+        log.debug("STARTJENKINS");
         data = new IEData();
         data.group = "\\!test_group5_5220";
         Methods.browser = "ie";
