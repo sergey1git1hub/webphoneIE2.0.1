@@ -67,7 +67,7 @@ public class Methods {
             Thread thread1 = new LoaderThread(driver, webphoneUrl);
             Thread thread2 = new Thread() {
                 public void run() {
-                   Screen screen;
+                    Screen screen;
                     try {
                         System.out.println("openWebphoneLoginPage.updateJavaLater");
                         screen = new Screen();
@@ -283,23 +283,22 @@ public class Methods {
     }
 
     public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException, UnknownHostException {
-        String hostName = InetAddress.getLocalHost().getHostName();
         System.out.println("call");
-        switchLine(driver, line);
-        Thread.sleep(500);
-        WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
-        phoneNumberField.click();
-        phoneNumberField.sendKeys(number);
-        WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
+        String hostName = InetAddress.getLocalHost().getHostName();
         if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
-
-            /*Screen screen = new Screen();
-            screen.wait();
-            screen.click();*/
+            switchLine(driver, line);
+            Thread.sleep(500);
+            Screen screen = new Screen();
+            org.sikuli.script.Pattern phoneNumberField_Sikuli = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
+            screen.wait(phoneNumberField_Sikuli, 10);
+            screen.click(phoneNumberField_Sikuli);
+            WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
+            phoneNumberField.sendKeys(number);
+            WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", button_Call);
         } else {
-            button_Call.click();
+
         }
         return driver;
 
