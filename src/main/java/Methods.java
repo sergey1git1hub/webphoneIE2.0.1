@@ -283,36 +283,24 @@ public class Methods {
     }
 
     public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException, UnknownHostException {
-        log.debug("START");
         String hostName = InetAddress.getLocalHost().getHostName();
-        log.debug("String hostName = InetAddress.getLocalHost().getHostName();");
         System.out.println("call");
         switchLine(driver, line);
-        log.debug("switchLine(driver, line);");
         Thread.sleep(500);
-        log.debug("Thread.sleep(500);");
         WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
-        log.debug(" WebElement phoneNumberField = driver.findElement(By.cssSelector(\"#PhoneNumber\"));");
+        phoneNumberField.click();
         phoneNumberField.sendKeys(number);
-        log.debug("phoneNumberField.sendKeys(number);");
         WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
-        log.debug("WebElement button_Call = driver.findElement(By.cssSelector(\"#btn_call\"));");
-        log.debug("if (hostName.equalsIgnoreCase(\"kv1-it-pc-jtest\")) {");
         if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
 
             /*Screen screen = new Screen();
             screen.wait();
             screen.click();*/
             JavascriptExecutor executor = (JavascriptExecutor) driver;
-            log.debug("JavascriptExecutor executor = (JavascriptExecutor) driver;");
             executor.executeScript("arguments[0].click();", button_Call);
-            log.debug("executor.executeScript(\"arguments[0].click();\", button_Call);");
         } else {
-            log.debug("} else{");
             button_Call.click();
-            log.debug("button_Call.click();");
         }
-        log.debug("END");
         return driver;
 
     }
