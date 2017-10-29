@@ -287,16 +287,20 @@ public class Methods {
         String hostName = InetAddress.getLocalHost().getHostName();
         if (true/*hostName.equalsIgnoreCase("kv1-it-pc-jtest")*/) {
             switchLine(driver, line);
+            System.out.println("Line switched.");
             Thread.sleep(500);
             Screen screen = new Screen();
-            org.sikuli.script.Pattern phoneNumberField_Sikuli = new org.sikuli.script.Pattern("C:\\SikuliImages\\closePhoneWindow.png");
+            org.sikuli.script.Pattern phoneNumberField_Sikuli = new org.sikuli.script.Pattern("C:\\SikuliImages\\phoneNumberField_Sikuli.png");
             screen.wait(phoneNumberField_Sikuli, 10);
             screen.click(phoneNumberField_Sikuli);
+            System.out.println("Sikuli clkicked phone number filed.");
             WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
             phoneNumberField.sendKeys(number);
+            System.out.println("Selenium send phone number key.");
             WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", button_Call);
+            System.out.println("Button call clicked with javascript.");
         } else {
 
         }
@@ -556,6 +560,7 @@ public class Methods {
     public static boolean isIE(WebDriver driver) {
         System.out.println("isIE");
         Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+   /*     Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();*/
         String browserName = cap.getBrowserName().toLowerCase();
         System.out.println(browserName);
         if (browserName.equals("internet explorer"))
