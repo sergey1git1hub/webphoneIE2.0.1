@@ -33,11 +33,11 @@ public class TwoLinesAgentHangup {
     @AfterClass
     public void teardown() throws IOException {
         boolean isIE = Methods.isIE(driver);
-        driver.quit();
 
         if(isIE){
+            driver.quit();
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
-        }
+        } else{ driver.quit();}
     }
 
     @AfterSuite(alwaysRun = true)

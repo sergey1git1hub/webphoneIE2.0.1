@@ -285,7 +285,7 @@ public class Methods {
     public static WebDriver call(WebDriver driver, int line, String number) throws FindFailed, InterruptedException, UnknownHostException {
         System.out.println("call");
         String hostName = InetAddress.getLocalHost().getHostName();
-        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
+        if (true/*hostName.equalsIgnoreCase("kv1-it-pc-jtest")*/) {
             switchLine(driver, line);
             Thread.sleep(500);
             Screen screen = new Screen();
