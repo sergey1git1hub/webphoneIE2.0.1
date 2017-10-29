@@ -1,0 +1,153 @@
+Index: src/main/java/CallOnTwoLines.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/CallOnTwoLines.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/main/java/CallOnTwoLines.java	(revision 6c51eebb2d0b447cddeb4ce0353010c563bd768d)
+@@ -1,4 +1,3 @@
+-import methods.ChromeData;
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.chrome.ChromeDriver;
+ import org.openqa.selenium.ie.InternetExplorerDriver;
+@@ -9,27 +8,19 @@
+ 
+ import java.io.IOException;
+ 
+-import static methods.Methods.browser;
+-
+ /**
+  * Created by SChubuk on 05.10.2017.
+  */
+ 
+ public class CallOnTwoLines {
+-    static IEData iedata;
++    static IEData data;
+     static WebDriver driver;
+-    static ChromeData chromeData;
+ 
+ 
+     public static void createData() {
+-        if (browser == "chrome") {
+-            iedata = new ChromeData();
+-            Methods.browser = "chrome";
+-        } else {
+-            chromeData = new IEData();
+-            Methods.browser = "ie";
+-        }
++        data = new IEData();
+         data.group = "\\!test_group5_5220";
++        Methods.browser = "ie";
+         Methods.onJenkins = false;
+     }
+ 
+Index: src/main/java/ChromeData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/ChromeData.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/main/java/CromeData.java	(revision 6c51eebb2d0b447cddeb4ce0353010c563bd768d)
+@@ -3,8 +3,8 @@
+ /**
+  * Created by SChubuk on 04.10.2017.
+  */
+-public class ChromeData extends Data {
+-    String browser = "chrome";
++public class CromeData extends Data {
++    String browser = "Chrome";
+     String webphoneUrl = "http://172.21.7.239/gbwebphone/";
+     String method = "usual";
+ 
+Index: src/main/java/Data.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/Data.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/main/java/Data.java	(revision 6c51eebb2d0b447cddeb4ce0353010c563bd768d)
+@@ -8,7 +8,7 @@
+     String browser;
+     String webphoneUrl;
+     String method;
+-    String username = "81049";
++    String username = "81016";
+     String group;
+     String number1 = "94949";
+     String number2 = "94948";
+Index: src/main/java/Methods.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/Methods.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/main/java/Methods.java	(revision 6c51eebb2d0b447cddeb4ce0353010c563bd768d)
+@@ -31,7 +31,6 @@
+  */
+ 
+ public class Methods {
+-
+     public static String browser;
+     public static boolean onJenkins;
+     static boolean killProcess = true;
+Index: src/main/java/methods/ChromeData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/methods/ChromeData.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/main/java/methods/ChromeData.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
+@@ -1,7 +0,0 @@
+-package methods;
+-
+-/**
+- * Created by SChubuk on 12.10.2017.
+- */
+-public class ChromeData {
+-}
+Index: src/test/java/TwoLinesAgentHangup.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/TwoLinesAgentHangup.java	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/test/java/TwoLinesAgentHangup.java	(revision 6c51eebb2d0b447cddeb4ce0353010c563bd768d)
+@@ -2,7 +2,10 @@
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.WebElement;
+ import org.sikuli.script.FindFailed;
+-import org.testng.annotations.*;
++import org.testng.annotations.AfterClass;
++import org.testng.annotations.BeforeClass;
++import org.testng.annotations.BeforeTest;
++import org.testng.annotations.Test;
+ 
+ import java.io.IOException;
+ 
+@@ -16,10 +19,8 @@
+     static WebDriver driver;
+     static Data data;
+ 
+-    @Parameters("browser")
+     @Test
+-    public static void twoLinesAgentHangup(String browser) throws InterruptedException, IOException, FindFailed {
+-        Methods.browser = browser;
++    public static void twoLinesAgentHangup() throws InterruptedException, IOException, FindFailed {
+         CallOnTwoLines.callOnTwoLines();
+         driver = CallOnTwoLines.driver;
+         data = CallOnTwoLines.data;
+Index: src/test/java/regression.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/regression.xml	(revision 82a8a08c3c5b64d3f0d295a8543c9d499648f079)
++++ src/test/java/regression.xml	(revision 6c51eebb2d0b447cddeb4ce0353010c563bd768d)
+@@ -2,7 +2,6 @@
+ <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+ 
+ <suite name="regression">
+-    <parameter name="browser"  value="chrome"/>
+     <test name="TwoLinesAgentHangup">
+         <classes>
+             <class name="TwoLinesAgentHangup"/>
