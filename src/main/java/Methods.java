@@ -42,157 +42,86 @@ public class Methods {
     static boolean debug = true;
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
-        log.debug("STARTJENKINS");
-        log.trace("if (browser == \"chrome\") {");
         if (browser == "chrome") {
             System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
-            log.trace("System.setProperty(\"webdriver.chrome.driver\", \"C:/chromedriver/chromedriver.exe\");");
             driver = new ChromeDriver();
-            log.trace("driver = new ChromeDriver();");
             driver.get(webphoneUrl);
-            log.trace("driver.get(webphoneUrl);");
             WebDriverWait waitForTitle = new WebDriverWait(driver, 10);
-            log.trace("WebDriverWait waitForTitle = new WebDriverWait(driver, 10);");
             waitForTitle.until(ExpectedConditions.titleIs("gbwebphone"));
-            log.trace("waitForTitle.until(ExpectedConditions.titleIs(\"gbwebphone\"));");
             Assert.assertEquals(driver.getTitle(), "gbwebphone");
-            log.trace("Assert.assertEquals(driver.getTitle(), \"gbwebphone\");");
         } else {
-            log.trace("} else {");
-            log.trace("if(killProcess == true){");
             if (killProcess == true) {
                 Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");
-                log.trace("Runtime.getRuntime().exec(\"taskkill /F /IM IEDriverServer.exe\");");
                 killProcess = false;
-                log.trace("killProcess = false;");
             }
-            log.trace(" }");
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
-            log.trace("Runtime.getRuntime().exec(\"taskkill /F /IM iexplore.exe\");");
             System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
-            log.trace("System.setProperty(\"webdriver.ie.driver\", \"C:/iedriver32/IEDriverServer.exe\");");
             DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-            log.trace("DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();");
             ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
                     true);
-            log.trace("ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,\n" +
-                    "                    true);");
             driver = new InternetExplorerDriver(ieCapabilities);
-            log.trace("driver = new InternetExplorerDriver(ieCapabilities);");
             driver.manage().window().maximize();
-            log.trace("driver.manage().window().maximize();");
 
            /* final WebDriver finalDriver = driver;
             final String finalwebphoneUrl = webphoneUrl;*/
             Thread thread1 = new LoaderThread(driver, webphoneUrl);
-            log.trace("Thread thread1 = new LoaderThread(driver, webphoneUrl);");
             Thread thread2 = new Thread() {
                 public void run() {
-                    log.trace("Thread thread2 = new Thread() {\n" +
-                            "                public void run() {");
-                    Screen screen;
-                    log.trace(" Screen screen;");
+                   Screen screen;
                     try {
-                        log.trace("try {");
                         System.out.println("openWebphoneLoginPage.updateJavaLater");
-                        log.trace("System.out.println(\"openWebphoneLoginPage.updateJavaLater\");");
                         screen = new Screen();
-                        log.trace("screen = new Screen();");
 
                         org.sikuli.script.Pattern checkbox_doNotAskAgain = new org.sikuli.script.Pattern("C:\\SikuliImages\\checkbox_doNotAskAgain.png");
-                        log.trace("org.sikuli.script.Pattern checkbox_doNotAskAgain = new org.sikuli.script.Pattern(\"C:\\\\SikuliImages\\\\checkbox_doNotAskAgain.png\");");
                         screen.wait(checkbox_doNotAskAgain, 2);
-                        log.trace("screen.wait(checkbox_doNotAskAgain, 2);");
                         screen.click(checkbox_doNotAskAgain);
-                        log.trace("screen.click(checkbox_doNotAskAgain);");
 
                         org.sikuli.script.Pattern option_updateJavaLater = new org.sikuli.script.Pattern("C:\\SikuliImages\\option_updateJavaLater.png");
-                        log.trace("org.sikuli.script.Pattern option_updateJavaLater = new org.sikuli.script.Pattern(\"C:\\\\SikuliImages\\\\option_updateJavaLater.png\");");
                         screen.wait(option_updateJavaLater, 2);
-                        log.trace("screen.wait(option_updateJavaLater, 2);");
                         screen.click(option_updateJavaLater);
-                        log.trace("screen.click(option_updateJavaLater);");
-                        log.trace("}");
                     } catch (FindFailed findFailed) {
-                        log.trace("catch (FindFailed findFailed) {");
-                        log.trace("if(debug == true){");
                         if (debug == true) {
 
                             findFailed.printStackTrace();
-                            log.trace("findFailed.printStackTrace();");
-                            log.trace("}");
                         } else {
                             System.out.println("There is no update java later window!");
                         }
                     }
                     try {
-                        log.trace("try {");
                         System.out.println("openWebphoneLoginPage.DoYouWantToRunThisApplication");
-
                         screen = new Screen();
-                        log.trace("screen = new Screen();");
-
                         org.sikuli.script.Pattern checkbox_acceptTheRisk = new org.sikuli.script.Pattern("C:\\SikuliImages\\checkbox_acceptTheRisk.png");
-                        log.trace("org.sikuli.script.Pattern checkbox_acceptTheRisk = new org.sikuli.script.Pattern(\"C:\\\\SikuliImages\\\\checkbox_acceptTheRisk.png\");");
                         screen.wait(checkbox_acceptTheRisk, 2);
-                        log.trace("screen.wait(checkbox_acceptTheRisk, 2);");
                         screen.click(checkbox_acceptTheRisk);
-                        log.trace("screen.click(checkbox_acceptTheRisk);");
-
                         org.sikuli.script.Pattern button_Run = new org.sikuli.script.Pattern("C:\\SikuliImages\\button_Run.png");
-                        log.trace("org.sikuli.script.Pattern button_Run = new org.sikuli.script.Pattern(\"C:\\\\SikuliImages\\\\button_Run.png\");");
                         screen.wait(button_Run, 2);
-                        log.trace("screen.wait(button_Run, 2);");
                         screen.click(button_Run);
-                        log.trace("screen.click(button_Run);");
-                        log.trace("}");
                     } catch (FindFailed findFailed) {
-                        log.trace("catch (FindFailed findFailed) {");
-                        log.trace("if(debug == true){");
                         if (debug == true) {
-                            log.trace("findFailed.printStackTrace();");
                             findFailed.printStackTrace();
                         } else {
-                            log.trace("else  {");
                             System.out.println("There is no do you want to run this application window!");
-                            log.trace("System.out.println(\"There is no do you want to run this application window!\");");
-                            log.trace("}");
                         }
                     }
-                    log.trace("};");
                 }
             };
 
 
 // Start the downloads.
             thread1.start();
-            log.trace("thread1.start();");
             thread2.start();
-            log.trace("thread2.start();");
-
 // Wait for them both to finish
             thread1.join();
-            log.trace("thread1.join();");
             thread2.join();
-            log.trace("thread2.join();");
 
             WebDriverWait waitForTitle = new WebDriverWait(driver, 10);
-            log.trace("WebDriverWait waitForTitle = new WebDriverWait(driver, 10);");
             waitForTitle.until(ExpectedConditions.titleIs("gbwebphone"));
-            log.trace("waitForTitle.until(ExpectedConditions.titleIs(\"gbwebphone\"));");
             Assert.assertEquals(driver.getTitle(), "gbwebphone");
-            log.trace("Assert.assertEquals(driver.getTitle(), \"gbwebphone\");");
             WebElement language = driver.findElement(By.cssSelector("#lang_input_label"));
-            log.trace("WebElement language = driver.findElement(By.cssSelector(\"#lang_input_label\"));");
             language.click();
-            log.trace("language.click();");
             WebElement language_en = driver.findElement(By.xpath("//li[text() = 'English']"));
-            log.trace("WebElement language_en = driver.findElement(By.xpath(\"//li[text() = 'English']\"));");
             language_en.click();
-            log.trace("language_en.click();");
-            log.trace(" }");
         }
-        log.debug("END");
         return driver;
     }
 
