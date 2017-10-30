@@ -10,8 +10,11 @@ import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
@@ -20,6 +23,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.LogManager;
 import java.util.regex.Pattern;
 
 import static data.Data.PDUrl;
@@ -40,6 +44,12 @@ public class Methods {
     public static boolean onJenkins;
     static boolean killProcess = true;
     static boolean debug = true;
+    @BeforeSuite
+    public void confTestNGlogs() throws IOException {
+       /* System.out.println("Testng logging added.");
+            FileInputStream fis = new FileInputStream("properties/log4testng.properties");
+            LogManager.getLogManager().readConfiguration(fis);*/
+    }
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
 
@@ -61,11 +71,24 @@ public class Methods {
                 killProcess = false;
             }
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+
+            /*********SETUP IEDRIVER LOGGING****************/
             System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
+            /************************************************/
+
             System.setProperty("webdriver.ie.driver.loglevel","INFO");
             DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
             ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
                     true);
+
+            /**********PLAY WITH CAPABILITIES*********************/
+            ieCapabilities.setCapability("nativeEvents", false);
+            ieCapabilities.setCapability("unexpectedAlertBehaviour", "accept");
+            ieCapabilities.setCapability("ignoreProtectedModeSettings", true);
+            ieCapabilities.setCapability("disable-popup-blocking", true);
+            ieCapabilities.setCapability("enablePersistentHover", true);
+            ieCapabilities.setCapability("ignoreZoomSetting", true);
+            /***************************************************/
             driver = new InternetExplorerDriver(ieCapabilities);
             driver.manage().window().maximize();
 

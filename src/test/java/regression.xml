@@ -6,6 +6,7 @@
     <test name="TwoLinesAgentHangup">
         <classes>
             <class name="TwoLinesAgentHangup"/>
+            <class name = "Methods"/>
         </classes>
     </test>
     <test name="TwoLinesClientHangup">
