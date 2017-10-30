@@ -44,6 +44,7 @@ public class Methods {
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
         if (browser == "chrome") {
             System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
+            System.setProperty("webdriver.chrome.verboseLogging", "true");
             driver = new ChromeDriver();
             driver.get(webphoneUrl);
             WebDriverWait waitForTitle = new WebDriverWait(driver, 10);
