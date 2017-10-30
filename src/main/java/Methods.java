@@ -42,9 +42,14 @@ public class Methods {
     static boolean debug = true;
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
+
+      /*  Settings.ActionLogs=true; // starting with [log]
+        Settings.InfoLogs=true; // starting with [info]
+        Settings.DebugLogs = true;*/
         if (browser == "chrome") {
             System.setProperty("webdriver.chrome.driver", "C:/chromedriver/chromedriver.exe");
             System.setProperty("webdriver.chrome.verboseLogging", "true");
+
             driver = new ChromeDriver();
             driver.get(webphoneUrl);
             WebDriverWait waitForTitle = new WebDriverWait(driver, 10);
@@ -57,6 +62,7 @@ public class Methods {
             }
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
             System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
+            System.setProperty("webdriver.ie.driver.loglevel","INFO");
             DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
             ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
                     true);
