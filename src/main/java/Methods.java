@@ -214,7 +214,7 @@ public class Methods {
         return driver;
     }
 
-    public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) throws UnknownHostException, UnsupportedEncodingException {
+    public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) throws UnknownHostException, UnsupportedEncodingException, InterruptedException {
 
         System.out.println("checkStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
@@ -231,11 +231,15 @@ public class Methods {
             status = new String(bytes, "UTF-8");*/
 
         } else { }
-        System.out.println("String converted.");
+        /*System.out.println("String converted.");*/
+        if ((hostName.equalsIgnoreCase("kv1-it-pc-jtest"))&&(status.equals("Тренинг"))) {
+            Thread.sleep(10000);
+        } else{
         WebDriverWait waitForStatus = new WebDriverWait(driver, waitTime);
         waitForStatus.until(ExpectedConditions.textMatches(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"), Pattern.compile(".*\\b" + status + "\\b.*")));
         System.out.println("Wait for status.");
+        }
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
         Assert.assertTrue(currentStatus.getText().contains(status));
