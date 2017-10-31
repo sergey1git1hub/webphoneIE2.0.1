@@ -222,12 +222,12 @@ public class Methods {
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
             status = new String(b, "UTF-16");*/
 
-            /*byte[] outbytes = status.getBytes("Cp1252");
-            status = new String(outbytes, "UTF-16");*/
+            byte[] outbytes = status.getBytes("Cp1252");
+            status = new String(outbytes, "UTF-16");
 
-            
-            byte bytes[] = status.getBytes("UTF-8");
-            status = new String(bytes, "UTF-8");
+
+            /*byte bytes[] = status.getBytes("UTF-8");
+            status = new String(bytes, "UTF-8");*/
         }
         System.out.println("String converted.");
         WebDriverWait waitForStatus = new WebDriverWait(driver, waitTime);
