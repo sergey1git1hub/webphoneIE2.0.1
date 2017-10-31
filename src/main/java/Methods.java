@@ -6,6 +6,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.basics.Debug;
 import org.sikuli.script.App;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Screen;
@@ -45,10 +46,9 @@ public class Methods {
     static boolean killProcess = true;
     static boolean debug = true;
     @BeforeSuite
-    public void confTestNGlogs() throws IOException {
-       /* System.out.println("Testng logging added.");
-            FileInputStream fis = new FileInputStream("properties/log4testng.properties");
-            LogManager.getLogManager().readConfiguration(fis);*/
+    public void confSikulilogs() throws IOException {
+        int level = 3;
+        Debug.setDebugLevel(level);
     }
 
     public static WebDriver openWebphoneLoginPage(WebDriver driver, String browser, final String webphoneUrl) throws InterruptedException, IOException {
@@ -73,10 +73,10 @@ public class Methods {
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
 
             /*********SETUP IEDRIVER LOGGING****************/
-            System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
+            System.setProperty("webdriver.ie.driver.loglevel","TRACE");
             /************************************************/
+            System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
 
-            System.setProperty("webdriver.ie.driver.loglevel","INFO");
             DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
             ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
                     true);
@@ -342,7 +342,8 @@ public class Methods {
         System.out.println("openCXphone");
         String hostName = InetAddress.getLocalHost().getHostName();
         if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
-
+            /*App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
+            Thread.sleep(waitTime);*/
         } else {
             App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
             Thread.sleep(waitTime);
