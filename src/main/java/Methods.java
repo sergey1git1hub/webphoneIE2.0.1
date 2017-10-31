@@ -217,11 +217,13 @@ public class Methods {
     public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) throws UnknownHostException, UnsupportedEncodingException {
         System.out.println("checkStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
-       /* if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
-            byte[] b = status.getBytes("Cp1252");
+        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
+            /*byte[] b = status.getBytes("Cp1252");
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
-            status = new String(b, "UTF-16");
-        }*/
+            status = new String(b, "UTF-16");*/
+            byte[] outbytes = status.getBytes("Cp1252");
+            status = new String(outbytes, "UTF-16");
+        }
         System.out.println("String converted.");
         WebDriverWait waitForStatus = new WebDriverWait(driver, waitTime);
         waitForStatus.until(ExpectedConditions.textMatches(By.cssSelector(
