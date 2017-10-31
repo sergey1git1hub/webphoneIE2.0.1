@@ -239,7 +239,7 @@ public class Methods {
         waitForStatus.until(ExpectedConditions.textMatches(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"), Pattern.compile(".*\\b" + status + "\\b.*")));
         System.out.println("Wait for status.");
-        }
+
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
         System.out.println("Before assert status is: " + currentStatus.getText() + ".");
@@ -247,7 +247,7 @@ public class Methods {
 
         Assert.assertTrue(currentStatus.getText().contains(status));
         System.out.println("Check Status.");
-
+        }
         return driver;
     }
 
