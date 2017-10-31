@@ -26,7 +26,7 @@ public class PreviewFree {
     public static void IELoginAD() throws InterruptedException, IOException {
         driver = Methods.openWebphoneLoginPage(driver, data.browser, data.webphoneUrl);
         Methods.login(driver, data.method, data.username, data.group);
-        Methods.checkStatus(driver, "Тренинг", 20);
+        Methods.checkStatus(driver, "Тренинг", 10);
     }
 
 
