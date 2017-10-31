@@ -9,7 +9,7 @@
             <class name="TwoLinesAgentHangup"/>
         </classes>
     </test>
-    <test name="TwoLinesClientHangup">
+    <!--<test name="TwoLinesClientHangup">
         <classes>
             <class name="TwoLinesClientHangup"/>
         </classes>
@@ -50,6 +50,6 @@
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
 
 </suite>

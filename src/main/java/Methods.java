@@ -73,7 +73,7 @@ public class Methods {
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
 
             /*********SETUP IEDRIVER LOGGING****************/
-            System.setProperty("webdriver.ie.driver.loglevel","TRACE");
+            System.setProperty("webdriver.ie.driver.loglevel","INFO");
             /************************************************/
             System.setProperty("webdriver.ie.driver", "C:/iedriver32/IEDriverServer.exe");
 
@@ -217,18 +217,20 @@ public class Methods {
     public static WebDriver checkStatus(WebDriver driver, String status, int waitTime) throws UnknownHostException, UnsupportedEncodingException {
         System.out.println("checkStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
-        if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
+       /* if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
             byte[] b = status.getBytes("Cp1252");
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
             status = new String(b, "UTF-16");
-        }
+        }*/
+        System.out.println("String converted.");
         WebDriverWait waitForStatus = new WebDriverWait(driver, waitTime);
         waitForStatus.until(ExpectedConditions.textMatches(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"), Pattern.compile(".*\\b" + status + "\\b.*")));
+        System.out.println("Wait for status.");
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
         Assert.assertTrue(currentStatus.getText().contains(status));
-
+        System.out.println("Check Status.");
         return driver;
     }
 
@@ -342,8 +344,8 @@ public class Methods {
         System.out.println("openCXphone");
         String hostName = InetAddress.getLocalHost().getHostName();
         if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
-            /*App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
-            Thread.sleep(waitTime);*/
+            App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
+            Thread.sleep(waitTime);
         } else {
             App cxphone = App.open("C:\\Program Files (x86)\\3CXPhone\\3CXPhone.exe");
             Thread.sleep(waitTime);
