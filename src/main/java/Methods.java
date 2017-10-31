@@ -242,8 +242,12 @@ public class Methods {
         }
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
+        System.out.println("Before assert status is: " + currentStatus.getText() + ".");
+        System.out.println("Asserting that status is: " + status + ".");
+
         Assert.assertTrue(currentStatus.getText().contains(status));
         System.out.println("Check Status.");
+
         return driver;
     }
 
