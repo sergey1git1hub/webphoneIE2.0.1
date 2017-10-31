@@ -221,7 +221,7 @@ public class Methods {
         if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
             byte[] b = status.getBytes("Cp1252");
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
-            status = new String(b, "UTF-16");
+            status = new String(b, "Cp1251");
 
             /*byte[] outbytes = status.getBytes("Cp1252");
             status = new String(outbytes, "Cp1251");*/
