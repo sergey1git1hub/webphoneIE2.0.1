@@ -219,9 +219,9 @@ public class Methods {
         System.out.println("checkStatus");
         String hostName = InetAddress.getLocalHost().getHostName();
         if (hostName.equalsIgnoreCase("kv1-it-pc-jtest")) {
-            /*byte[] b = status.getBytes("Cp1252");
+            byte[] b = status.getBytes("Cp1252");
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
-            status = new String(b, "UTF-16");*/
+            status = new String(b, "UTF-16");
 
             /*byte[] outbytes = status.getBytes("Cp1252");
             status = new String(outbytes, "Cp1251");*/
@@ -243,7 +243,7 @@ public class Methods {
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
         System.out.println("Before assert status is: " + currentStatus.getText() + ".");
-        System.out.println("Asserting that status is: " + status + ".");
+        System.out.println("Asserting that contains: " + status + ".");
 
         Assert.assertTrue(currentStatus.getText().contains(status));
         System.out.println("Check Status.");
