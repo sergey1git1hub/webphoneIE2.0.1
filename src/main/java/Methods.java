@@ -223,8 +223,8 @@ public class Methods {
             //byte[] encoded = new String(b, "Cp1252").getBytes("UTF-16");
             status = new String(b, "UTF-16");*/
 
-            byte[] outbytes = status.getBytes("Cp1252");
-            status = new String(outbytes, "Cp1251");
+            /*byte[] outbytes = status.getBytes("Cp1252");
+            status = new String(outbytes, "Cp1251");*/
 
 
             /*byte bytes[] = status.getBytes("UTF-8");
