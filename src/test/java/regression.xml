@@ -9,11 +9,11 @@
             <class name="TwoLinesAgentHangup"/>
         </classes>
     </test>
-    <test name="TwoLinesClientHangup">
+    <!--<test name="TwoLinesClientHangup">
         <classes>
             <class name="TwoLinesClientHangup"/>
         </classes>
-    </test>
+    </test>-->
 
     <!--<test name="PDPreviewFreeCallIE">
         <classes>
@@ -33,7 +33,7 @@
              </class>
          </classes>
      </test>-->
-     <test name="PDProgressiveReleasedAgentHangup">
+    <!-- <test name="PDProgressiveReleasedAgentHangup">
         <classes>
             <class name="PDProgressiveReleasedAgentHangup">
                 <methods>
@@ -50,5 +50,5 @@
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
 </suite>
