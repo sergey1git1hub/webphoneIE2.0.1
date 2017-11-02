@@ -26,6 +26,7 @@ public class CallOnTwoLines {
         data = new IEData();
         data.group = "\\!test_group5_5220";
         Methods.browser = "ie";
+        data.webphoneUrl = "http://172.21.7.239/gbwebphone/";
         Methods.onJenkins = false;
     }
 

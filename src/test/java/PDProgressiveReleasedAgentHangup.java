@@ -19,6 +19,7 @@ public class PDProgressiveReleasedAgentHangup {
     public static void IELogin() throws InterruptedException, IOException {
         data = new IEData();
         data.group = "\\!test_group5_5220";
+        data.webphoneUrl = "http://172.21.7.239/gbwebphone/";
         driver = Methods.openWebphoneLoginPage(driver, data.browser, data.webphoneUrl);
         Methods.login(driver, data.method, data.username, data.group);
         Methods.checkStatus(driver, "Available", 10);

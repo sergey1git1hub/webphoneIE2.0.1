@@ -19,6 +19,7 @@ public class PreviewFree {
     public static void createData() {
         data = new IEData();
         data.group = "pasha_G_5_copy_preview";
+        data.webphoneUrl = "http://172.21.7.239/gbwebphone/";
         Methods.browser = "ie";
         Methods.onJenkins = false;
     }

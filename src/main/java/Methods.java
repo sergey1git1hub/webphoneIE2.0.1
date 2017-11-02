@@ -454,13 +454,22 @@ public class Methods {
         }
         return driver;
 
-
     }
 
-    public static WebDriver switchToAdTab(WebDriver driver) {
+    public static WebDriver switchToAdTab(WebDriver driver) throws FindFailed {
         System.out.println("switchToAdTab");
         WebElement adTab = driver.findElement(By.xpath("//a[@href = '#tabView:tab123']"));
         adTab.click();
+        String currentUrl = driver.getCurrentUrl();
+        if(currentUrl.contains("172.21.7.239")&&!browser.equals("chrome")){
+            /*WebElement button_SSO = driver.findElement(By.cssSelector("#ssoButton"));
+            button_SSO.click();*/
+            Screen screen = new Screen();
+            org.sikuli.script.Pattern button_SSO = new org.sikuli.script.Pattern("C:\\SikuliImages\\button_SSO.png");
+            screen.wait(button_SSO, 10);
+            screen.click(button_SSO);
+
+        };
         return driver;
     }
 

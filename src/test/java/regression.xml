@@ -15,7 +15,7 @@
         </classes>
     </test>
 
-    <test name="PDPreviewFreeCallIE">
+    <!--<test name="PDPreviewFreeCallIE">
         <classes>
             <class name="PDPreviewFreeCall">
                 <methods>
@@ -23,8 +23,8 @@
                 </methods>
             </class>
         </classes>
-    </test>
-    <test name="PDPreviewFreeAUX">
+    </test>-->
+    <!--<test name="PDPreviewFreeAUX">
          <classes>
              <class name="PDPreviewFreeAUX">
                  <methods>
@@ -32,7 +32,7 @@
                  </methods>
              </class>
          </classes>
-     </test>
+     </test>-->
      <test name="PDProgressiveReleasedAgentHangup">
         <classes>
             <class name="PDProgressiveReleasedAgentHangup">
