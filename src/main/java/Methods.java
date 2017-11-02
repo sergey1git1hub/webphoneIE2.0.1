@@ -344,6 +344,7 @@ public class Methods {
             screen.click(phoneNumberField_Sikuli);*/
             System.out.println("Sikuli clkicked phone number filed.");
             WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
+            phoneNumberField.clear();
             phoneNumberField.sendKeys(number);
             System.out.println("Selenium send phone number key.");
             WebElement button_Call = driver.findElement(By.cssSelector("#btn_call"));
