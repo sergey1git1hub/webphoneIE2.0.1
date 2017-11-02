@@ -338,10 +338,10 @@ public class Methods {
             switchLine(driver, line);
             System.out.println("Line switched.");
             Thread.sleep(500);
-            Screen screen = new Screen();
+            /*Screen screen = new Screen();
             org.sikuli.script.Pattern phoneNumberField_Sikuli = new org.sikuli.script.Pattern("C:\\SikuliImages\\phoneNumberField_Sikuli.png");
             screen.wait(phoneNumberField_Sikuli, 10);
-            screen.click(phoneNumberField_Sikuli);
+            screen.click(phoneNumberField_Sikuli);*/
             System.out.println("Sikuli clkicked phone number filed.");
             WebElement phoneNumberField = driver.findElement(By.cssSelector("#PhoneNumber"));
             phoneNumberField.sendKeys(number);
