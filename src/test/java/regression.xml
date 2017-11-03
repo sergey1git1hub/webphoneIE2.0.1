@@ -3,17 +3,17 @@
 
 <suite name="regression" verbose = "10">
 
-    <test name="TwoLinesAgentHangup">
+    <!--<test name="TwoLinesAgentHangup">
         <classes>
             <class name = "Methods"/>
             <class name="TwoLinesAgentHangup"/>
         </classes>
-    </test>
-   <!-- <test name="TwoLinesClientHangup">
+    </test>-->
+    <test name="TwoLinesClientHangup">
         <classes>
             <class name="TwoLinesClientHangup"/>
         </classes>
-    </test>-->
+    </test>
 
     <!--<test name="PDPreviewFreeCallIE">
         <classes>
