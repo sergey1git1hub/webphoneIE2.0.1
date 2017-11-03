@@ -32,12 +32,18 @@ public class TwoLinesAgentHangup {
 
     @AfterClass
     public void teardown() throws IOException {
+        try{
         boolean isIE = Methods.isIE(driver);
 
         if(isIE){
             driver.quit();
             Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
         } else{ driver.quit();}
+        }
+        catch(Exception e){
+            System.out.println("ERROR: Method teardown done something wrong.");
+        }
+            
     }
 
     @AfterSuite(alwaysRun = true)
