@@ -3,12 +3,12 @@
 
 <suite name="regression" verbose = "10">
 
-    <!--<test name="TwoLinesAgentHangup">
+    <test name="TwoLinesAgentHangup">
         <classes>
             <class name = "Methods"/>
             <class name="TwoLinesAgentHangup"/>
         </classes>
-    </test>-->
+    </test>
     <test name="TwoLinesClientHangup">
         <classes>
             <class name="TwoLinesClientHangup"/>
@@ -33,7 +33,7 @@
              </class>
          </classes>
      </test>-->
-     <!--<test name="PDProgressiveReleasedAgentHangup">
+     <test name="PDProgressiveReleasedAgentHangup">
         <classes>
             <class name="PDProgressiveReleasedAgentHangup">
                 <methods>
@@ -50,5 +50,5 @@
                 </methods>
             </class>
         </classes>
-    </test>-->
+    </test>
 </suite>
